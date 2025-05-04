@@ -25,3 +25,47 @@ html {
 .nav-link:hover::after {
     width: 100%;
 }
+
+.btn-primary {
+    background-color: #E91C24;
+    color: white;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(233, 28, 36, 0.7);
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid #E91C24;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(233, 28, 36, 0.1);
+    box-shadow: 0 0 15px rgba(233, 28, 36, 0.5);
+    transform: translateY(-3px);
+}
+
+.binary-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    opacity: 1;
+}
+
+.grid-pattern {
+    background-image:
+        linear-gradient(rgba(40, 40, 40, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(40, 40, 40, 0.3) 1px, transparent 1px);
+    background-size: 20px 20px;
+}

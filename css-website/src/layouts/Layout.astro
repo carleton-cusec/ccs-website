@@ -11,9 +11,10 @@ import Footer from '../components/Footer.astro';
   </head>
   <body class="bg-black text-white">
     <Header />
-    <main class="pt-20">
+    <main>
       <slot /> <!-- Page content will go here -->
     </main>
     <Footer />
+    <script is:inline src="/scripts/script.js"></script>
   </body>
 </html>

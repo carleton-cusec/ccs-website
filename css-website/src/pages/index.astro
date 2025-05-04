@@ -3,6 +3,43 @@ import Layout from '../layouts/Layout.astro';
 ---
 <Layout>
   <main>
-  	<!-- Page content will go here -->
+  	<!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="binary-bg" id="binary-container"></div>
+        <div class="grid-pattern absolute inset-0 z-0"></div>
+        <div class="container mx-auto px-6 z-10 py-20">
+            <div class="flex flex-col items-center text-center">
+                <div class="mb-6 inline-block">
+                    <span class="text-carletonRed font-space font-bold text-lg tracking-wider">OFFICIAL CARLETON
+                        UNIVERSITY DELEGATION</span>
+                </div>
+                <h1 class="text-5xl md:text-7xl font-space font-bold mb-6" data-text="Carleton CUSEC Society">
+                    Carleton CUSEC Society
+                </h1>
+                <p class="text-xl md:text-2xl mb-10 max-w-3xl text-gray-300">
+                    Representing Carleton University as an independent member of the Canadian University Software Engineering Conference
+                </p>
+
+                <!-- CTA BUttons -->
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+                    <a href="#get-involved" class="btn-primary px-8 py-4 rounded-md font-semibold text-lg">
+                        Join the Community
+                    </a>
+                    <a href="https://2025.cusec.net/" target="_blank"
+                        class="btn-secondary px-8 py-4 rounded-md font-semibold text-lg">
+                        Official CUSEC 2025
+                    </a>
+                </div>
+                <div class="mt-16"></div>
+            </div>
+        </div>
+        <div class="absolute bottom-0 left-0 right-0">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#121212" fill-opacity="1"
+                    d="M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,261.3C960,256,1056,224,1152,208C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z">
+                </path>
+            </svg>
+        </div>
+    </section>
   </main>
 </Layout>
