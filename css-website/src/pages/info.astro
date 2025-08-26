@@ -1,0 +1,222 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const year = "2025–2026";
+const info = {
+  overview: `CCS organizes Carleton’s official delegation to CUSEC each year. This page collects everything you need to register, travel, and get reimbursed.`,
+  keyDates: [
+    { label: "Pre Sale Opens", date: "TBA" },
+    { label: "General Sale Opens", date: "TBA" },
+    { label: "Bus Travel Registration", date: "TBA" },
+    { label: "Hotel Booking Period", date: "TBA" },
+    { label: "Reimbursement Period", date: "TBA" },
+    { label: "CUSEC 2026 Conference", date: "TBA" }
+  ],
+  links: {
+    memberForm: "https://forms.gle/KV2yv7wHRmvmjEND7",
+    discord: "https://discord.gg/F3WWye23Ys",
+    sponsorEmail: "mailto:cusec.carleton@gmail.com",
+    reimbursementForm: "https://forms.gle/KV2yv7wHRmvmjEND7",
+    grouptravelForm: "https://forms.gle/your-group-travel-form-link",
+    travelPolicy: "/docs/travel-policy.pdf",
+    codeOfConduct: "/docs/code-of-conduct.pdf",
+  },
+  criteria: [
+    "Must be a current Carleton student (any tech-aligned program welcome).",
+    "Active in the CCS community (Discord, meetings, prep sessions).",
+    "Adhere to Code of Conduct and travel policies.",
+    "Meet internal deadlines for forms and payments.",
+  ],
+  registrationSteps: [
+    "Submit the CCS Member/Interest Form.",
+    "Join the Discord and complete your member profile.",
+    "Confirm your spot when allocations go out (watch email & Discord).",
+    "Complete payment/approval steps (as instructed).",
+    "Finalize travel & accommodation details with CCS.",
+  ],
+  costs: {
+    notes:
+      "We aim to reduce individual costs through sponsorships and university support. Exact figures are announced once negotiated.",
+    items: [
+      { item: "CUSEC Ticket", coverage: "May or may not be partially covered (TBD)" },
+      { item: "Hotel (shared rooms)", coverage: "May or may not be partially covered (TBD)" },
+      { item: "Group Transport (46 delegates)", coverage: "Fully covered for 2025 (TBD)" },
+      { item: "Meals", coverage: "Not covered" },
+    ],
+  },
+  accommodation: {
+    hotel: "Hotel information is TBA — accommodation is arranged by CUSEC with a special conference rate available for a limited time. Details will be announced to all delegates once confirmed.",
+    notes: [
+      "Delegates are responsible for finding their own roommates. Discord forums and CCS in-person events will help you connect with others.",
+      "Staying at the official hotel is not mandatory, but highly recommended by CUSEC for the best conference experience.",
+      "Special pricing will only be available for a set period; watch Discord and email announcements closely.",
+    ],
+  },
+  travel: {
+    mode: "Group travel (school bus) from Ottawa to host city (TBD).",
+    notes: [
+      "Depart/return times - TBD",
+      "Must submit travel interest form if using the group transport.",
+    ],
+  },
+  reimbursement: {
+    howItWorks: [
+      "Must be a current Carleton student (any program).",
+      "Follow university/club policy (no alcohol, no misconduct).",
+      "Deadlines apply — late submissions may not be reimbursed.",
+    ],
+    docsRequired: [
+      "Must be a CCS member.",
+    ],
+  },
+  faqs: [
+    { q: "Do I have to be CS or SE to join?", a: "No. We welcome all Carleton students interested and passionate about tech." },
+    { q: "How are spots allocated?", a: "We use interest forms + participation signals to allocate fairly. Additional criteria may apply if demand exceeds capacity." },
+    { q: "Can I arrange my own travel?", a: "Yes, though no reimbursements are provided by CCS due to limited funding." },
+    { q: "What if I miss a deadline?", a: "Spots are time-sensitive. Missed deadlines may forfeit your place." }
+  ],
+  contacts: [
+    { name: "CCS Team (Carleton Specific)", value: "cusec.carleton@gmail.com", href: "mailto:cusec.carleton@gmail.com" },
+    { name: "CUSEC Official", value: "info@cusec.net", href: "mailto:info@cusec.net" },
+  ],
+};
+---
+
+<Layout>
+  <main>
+    <section class="pt-32 pb-16 bg-darkGray">
+      <div class="container mx-auto px-6">
+
+        <!-- Big Notice Heading -->
+        <div class="mb-8">
+          <h1 class="text-4xl md:text-5xl font-space font-bold mb-2">Conference Info: {year}</h1>
+          <h2 class="text-2xl md:text-3xl font-space font-bold text-carletonRed mb-4">For Carleton Delegation Only</h2>
+          <p class="text-gray-300 max-w-3xl">{info.overview}</p>
+        </div>
+
+        <!-- Yellow Notice -->
+        <div class="bg-black border border-gray-800 rounded-lg p-4 mb-10">
+          <p class="text-sm text-yellow-400">
+            This page is updated as we receive more information from CUSEC officials and will continue to be revised as needed. Watch Discord & email for the latest details.
+          </p>
+        </div>
+
+        <!-- Table of Contents -->
+        <div class="grid md:grid-cols-3 gap-8 mb-14">
+          <div class="bg-black border border-gray-800 rounded-lg p-6">
+            <h1 class="font-bold mb-3 text-carletonRed">Jump to</h1>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#key-dates" class="nav-link">Key Dates</a></li>
+              <li><a href="#costs" class="nav-link">Costs & Coverage</a></li>
+              <li><a href="#accommodation" class="nav-link">Accommodation</a></li>
+              <li><a href="#travel" class="nav-link">Group Travel</a></li>
+              <li><a href="#reimbursement" class="nav-link">Reimbursement</a></li>
+              <li><a href="#faqs" class="nav-link">FAQs</a></li>
+              <li><a href="#contacts" class="nav-link">Contacts</a></li>
+            </ul>
+          </div>
+
+          <!-- Key Dates -->
+          <div id="key-dates" class="md:col-span-2 bg-black border border-gray-800 rounded-lg p-6">
+            <h2 class="text-2xl font-space font-bold mb-4">Key Dates</h2>
+            <ul class="space-y-2">
+              {info.keyDates.map(d => (
+                <li class="flex justify-between border-b border-gray-800 py-2">
+                  <span class="text-gray-300">{d.label}</span>
+                  <span class="text-gray-400">{d.date}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <!-- Costs -->
+        <div id="costs" class="bg-black border border-gray-800 rounded-lg p-6 mb-10">
+          <h2 class="text-2xl font-space font-bold mb-4">Costs & Coverage</h2>
+          <p class="text-gray-300 mb-4">{info.costs.notes}</p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            {info.costs.items.map(ci => (
+              <div class="bg-mediumGray rounded-lg p-4 border border-gray-800">
+                <div class="font-semibold">{ci.item}</div>
+                <div class="text-gray-400 text-sm">{ci.coverage}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Accommodation -->
+        <div id="accommodation" class="bg-black border border-gray-800 rounded-lg p-6 mb-10">
+          <h2 class="text-2xl font-space font-bold mb-2">Accommodation</h2>
+          <p class="text-gray-300 mb-3">{info.accommodation.hotel}</p>
+          <ul class="list-disc list-inside text-gray-300 space-y-1">
+            {info.accommodation.notes.map(n => <li>{n}</li>)}
+          </ul>
+        </div>
+
+        <!-- Group Travel -->
+        <div id="travel" class="bg-black border border-gray-800 rounded-lg p-6 mb-10">
+          <h2 class="text-2xl font-space font-bold mb-2">Group Travel</h2>
+          <p class="text-gray-300 mb-3">{info.travel.mode}</p>
+          <ul class="list-disc list-inside text-gray-300 space-y-1">
+            {info.travel.notes.map(n => <li>{n}</li>)}
+          </ul>
+          <div class="mt-4">
+            <a href={info.links.grouptravelForm} target="_blank" class="btn-secondary inline-block px-5 py-3 rounded-md font-medium">Group Travel Interest Form</a>
+          </div>
+        </div>
+
+        <!-- Reimbursement -->
+        <div id="reimbursement" class="bg-black border border-gray-800 rounded-lg p-6 mb-10">
+        <h2 class="text-2xl font-space font-bold mb-2">Reimbursement</h2>
+
+        <!-- Yellow note inside reimbursement -->
+        <div class="bg-black border border-yellow-500 rounded p-3 mb-4">
+            <p class="text-yellow-400 text-sm">
+            ⚠️ Reimbursement details change every year depending on funding received. Nothing is finalized as of now.
+            </p>
+        </div>
+
+        <h3 class="font-semibold mb-2">Eligibility & Requirements</h3>
+        <ul class="list-disc list-inside text-gray-300 space-y-1 mb-4">
+            {info.reimbursement.howItWorks.concat(info.reimbursement.docsRequired).map(r => (
+            <li>{r}</li>
+            ))}
+        </ul>
+
+        <a href={info.links.memberForm} target="_blank"
+            class="btn-secondary inline-block px-5 py-3 rounded-md font-medium">
+            CCS Membership Form
+        </a>
+        </div>
+
+
+        <!-- FAQs -->
+        <div id="faqs" class="bg-black border border-gray-800 rounded-lg p-6 mb-10">
+          <h2 class="text-2xl font-space font-bold mb-4">FAQs</h2>
+          <div class="space-y-3">
+            {info.faqs.map(({ q, a }) => (
+              <details class="bg-mediumGray border border-gray-800 rounded-md p-4">
+                <summary class="cursor-pointer font-semibold">{q}</summary>
+                <p class="text-gray-300 mt-2">{a}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+
+        <!-- Contacts -->
+        <div id="contacts" class="bg-black border border-gray-800 rounded-lg p-6">
+          <h2 class="text-2xl font-space font-bold mb-4">Contacts</h2>
+          <ul class="space-y-2">
+            {info.contacts.map(c => (
+              <li>
+                <span class="text-gray-300">{c.name} — </span>
+                <a href={c.href} class="text-carletonRed underline">{c.value}</a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+      </div>
+    </section>
+  </main>
+</Layout>

@@ -1,0 +1,170 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <main>
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-darkGray text-gray-300">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+          <h2 class="text-4xl md:text-5xl font-space font-bold mb-4 text-white">
+            About CCS
+          </h2>
+          <div class="w-24 h-1 bg-carletonRed mx-auto"></div>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div class="reveal">
+            <div
+              class="bg-lightGray p-6 rounded-lg border border-gray-700 relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 right-0 w-24 h-24 bg-carletonRed opacity-10 rounded-bl-full"
+              >
+              </div>
+              <h3 class="text-2xl font-space font-bold mb-4 text-carletonRed">
+                CUSEC
+              </h3>
+              <p class="text-gray-300 mb-4">
+                The <strong
+                  >Canadian University Software Engineering Conference (CUSEC)</strong
+                > is an annual national event that brings together students, academics,
+                and industry professionals from across Canada.
+              </p>
+              <p class="text-white">
+                Founded in 2002, CUSEC features keynote speakers, workshops,
+                hackathons, and networking opportunities focused on software
+                engineering and technology.
+              </p>
+              <div class="mt-6 flex items-center">
+                <div class="w-10 h-1 bg-carletonRed"></div>
+                <span class="ml-3 text-sm text-gray-400"
+                  >Annual National Conference</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="reveal">
+            <div
+              class="bg-lightGray p-6 rounded-lg border border-gray-700 relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 right-0 w-24 h-24 bg-carletonRed opacity-10 rounded-bl-full"
+              >
+              </div>
+              <h3 class="text-2xl font-space font-bold mb-4 text-carletonRed">
+                CCS
+              </h3>
+              <p class="text-gray-300 mb-4">
+                The <strong>Carleton CUSEC Society (CCS)</strong> is the official
+                student organization that represents Carleton University at CUSEC.
+                We organize and lead Carleton's delegation to the conference each
+                year.
+              </p>
+              <p class="text-gray-300">
+                Our mission is to provide Carleton students with opportunities
+                for professional development, networking, and exposure to the
+                latest trends in software engineering.
+              </p>
+              <div class="mt-6 flex items-center">
+                <div class="w-10 h-1 bg-carletonRed"></div>
+                <span class="ml-3 text-sm text-gray-400"
+                  >Carleton's Official Delegation</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-16 reveal">
+          <div
+            class="bg-black p-8 rounded-lg border border-gray-800 relative overflow-hidden"
+          >
+            <div
+              class="absolute top-0 right-0 w-64 h-64 bg-carletonRed opacity-5 rounded-bl-full"
+            >
+            </div>
+            <h3 class="text-2xl font-space font-bold mb-6">Our Mission</h3>
+            <p class="text-xl text-gray-300 max-w-3xl">
+              We aim to bridge the gap between academic learning and industry
+              practice by connecting Carleton students with professionals,
+              fostering a community of innovation, and providing hands-on
+              experiences that complement classroom education.
+            </p>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="flex items-start">
+                <div class="bg-carletonRed rounded-full p-2 mr-4 mt-1">
+                  <svg
+                    class="w-5 h-5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                    >
+                    </path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-2">Connect</h4>
+                  <p class="text-gray-400">
+                    Building bridges between students and industry professionals
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="bg-carletonRed rounded-full p-2 mr-4 mt-1">
+                  <svg
+                    class="w-5 h-5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-2">Empower</h4>
+                  <p class="text-gray-400">
+                    Providing resources and opportunities for growth
+                  </p>
+                </div>
+              </div>
+              <div class="flex items-start">
+                <div class="bg-carletonRed rounded-full p-2 mr-4 mt-1">
+                  <svg
+                    class="w-5 h-5 text-white"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                    >
+                    </path>
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-bold mb-2">Represent</h4>
+                  <p class="text-gray-400">
+                    Showcasing Carleton talent on a national stage
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

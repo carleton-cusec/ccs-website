@@ -1,0 +1,294 @@
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #000000;
+    color: white;
+}
+
+.reveal {
+    opacity: 1;
+    transform: translateY(3px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.glow {
+    box-shadow: 0 0 15px rgba(233, 28, 36, 0.5);
+}
+
+.glow-text {
+    text-shadow: 0 0 10px rgba(233, 28, 36, 0.7);
+}
+
+.btn-primary {
+    background-color: #E91C24;
+    color: white;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 20px rgba(233, 28, 36, 0.7);
+}
+
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+}
+
+.btn-primary:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 2px solid #E91C24;
+    transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+    background-color: rgba(233, 28, 36, 0.1);
+    box-shadow: 0 0 15px rgba(233, 28, 36, 0.5);
+    transform: translateY(-3px);
+}
+
+.timeline-dot {
+    width: 20px;
+    height: 20px;
+    background-color: #E91C24;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(233, 28, 36, 0.7);
+}
+
+.timeline-line {
+    width: 2px;
+    background-color: #333;
+    position: absolute;
+    left: 0;
+    top: 20px;
+    bottom: 0;
+    transform: translateX(-50%);
+}
+
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.gallery-item {
+    overflow: hidden;
+    position: relative;
+}
+
+.gallery-item img {
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover .gallery-overlay {
+    transform: translateY(0);
+}
+
+.binary-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    opacity: 0.1;
+}
+
+.binary-text {
+    position: absolute;
+    color: #E91C24;
+    font-family: monospace;
+    font-size: 14px;
+    white-space: nowrap;
+    user-select: none;
+}
+
+.nav-link {
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #E91C24;
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.glitch {
+    position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    left: 2px;
+    text-shadow: -1px 0 #E91C24;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim 5s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+    left: -2px;
+    text-shadow: -1px 0 #00FFFF;
+    clip: rect(44px, 450px, 56px, 0);
+    animation: glitch-anim2 5s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+    0% {
+        clip: rect(31px, 9999px, 94px, 0);
+    }
+
+    10% {
+        clip: rect(112px, 9999px, 76px, 0);
+    }
+
+    20% {
+        clip: rect(85px, 9999px, 77px, 0);
+    }
+
+    30% {
+        clip: rect(27px, 9999px, 97px, 0);
+    }
+
+    40% {
+        clip: rect(64px, 9999px, 98px, 0);
+    }
+
+    50% {
+        clip: rect(61px, 9999px, 85px, 0);
+    }
+
+    60% {
+        clip: rect(99px, 9999px, 114px, 0);
+    }
+
+    70% {
+        clip: rect(34px, 9999px, 115px, 0);
+    }
+
+    80% {
+        clip: rect(98px, 9999px, 129px, 0);
+    }
+
+    90% {
+        clip: rect(43px, 9999px, 96px, 0);
+    }
+
+    100% {
+        clip: rect(82px, 9999px, 64px, 0);
+    }
+}
+
+@keyframes glitch-anim2 {
+    0% {
+        clip: rect(125px, 9999px, 162px, 0);
+    }
+
+    10% {
+        clip: rect(120px, 9999px, 147px, 0);
+    }
+
+    20% {
+        clip: rect(113px, 9999px, 142px, 0);
+    }
+
+    30% {
+        clip: rect(142px, 9999px, 115px, 0);
+    }
+
+    40% {
+        clip: rect(114px, 9999px, 138px, 0);
+    }
+
+    50% {
+        clip: rect(123px, 9999px, 150px, 0);
+    }
+
+    60% {
+        clip: rect(133px, 9999px, 163px, 0);
+    }
+
+    70% {
+        clip: rect(126px, 9999px, 156px, 0);
+    }
+
+    80% {
+        clip: rect(118px, 9999px, 151px, 0);
+    }
+
+    90% {
+        clip: rect(131px, 9999px, 143px, 0);
+    }
+
+    100% {
+        clip: rect(112px, 9999px, 158px, 0);
+    }
+}
+
+.grid-pattern {
+    background-image:
+        linear-gradient(rgba(40, 40, 40, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(40, 40, 40, 0.3) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
