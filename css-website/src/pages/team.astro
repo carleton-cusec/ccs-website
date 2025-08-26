@@ -1,0 +1,115 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const SPACE = import.meta.env.PUBLIC_CTF_SPACE_ID;
+const TOKEN = import.meta.env.PUBLIC_CTF_CDA_TOKEN;
+
+// Fetch TeamMember entries; we'll sort in JS.
+const res = await fetch(
+  `https://cdn.contentful.com/spaces/${SPACE}/environments/master/entries?content_type=teamMember&include=1&limit=1000`,
+  { headers: { Authorization: `Bearer ${TOKEN}` } }
+);
+
+if (!res.ok) {
+  throw new Error(`Contentful fetch failed: ${res.status} ${res.statusText}`);
+}
+
+const data = await res.json();
+
+// Build asset map for photos
+const assetMap = new Map();
+(data.includes?.Asset ?? []).forEach((a: any) => assetMap.set(a.sys.id, a));
+
+/**
+ * Tip: In Contentful, set field IDs like:
+ *  - name (Text)
+ *  - title (Text)
+ *  - programYear (Text)
+ *  - academicYearLabel (Text, e.g. "2025–2026")
+ *  - academicYearStart (Number, e.g. 2025)
+ *  - initials (Text)
+ *  - photo (Media)
+ *  - sortOrder (Number)
+ */
+const members = (data.items ?? [])
+  .map((item: any) => {
+    const f = item.fields ?? {};
+    const assetId = f.photo?.sys?.id;
+    const photoUrl = assetId ? assetMap.get(assetId)?.fields?.file?.url : null;
+    return {
+      name: f.name ?? "",
+      title: f.title ?? "",
+      programYear: f.programYear ?? f["program & year"] ?? "",
+      initials: f.initials ?? "",
+      photoUrl: photoUrl ? `https:${photoUrl}` : undefined,
+      yearLabel: f.academicYear ?? f["academic year"] ?? "",
+      yearStart: Number(f.academicYearStart ?? f["academic year (start)"] ?? 0),
+      sortOrder: typeof f.sortOrder === "number" ? f.sortOrder : 999,
+    };
+  })
+  .filter((m: any) => m.name && m.yearLabel);
+
+// Group by year label
+const byYear = new Map();
+for (const m of members) {
+  if (!byYear.has(m.yearLabel)) byYear.set(m.yearLabel, []);
+  byYear.get(m.yearLabel).push(m);
+}
+
+// Build ordered year list (desc)
+const yearMeta = Array.from(byYear.entries())
+  .map(([label, list]) => {
+    const start = list[0]?.yearStart || parseInt(label.slice(0, 4)) || 0;
+    return { label, start };
+  })
+  .sort((a, b) => b.start - a.start);
+
+// Sort members within a year
+yearMeta.forEach(({ label }) => {
+  const list = byYear.get(label);
+  list.sort((a: any, b: any) => (a.sortOrder - b.sortOrder) || a.title.localeCompare(b.title));
+});
+---
+
+<Layout>
+  <main>
+    <section id="team" class="py-40 bg-darkGray">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+          <h2 class="text-4xl md:text-5xl font-space font-bold mb-4">Executive Team</h2>
+          <div class="w-24 h-1 bg-carletonRed mx-auto"></div>
+        </div>
+
+        {yearMeta.map(({ label }) => (
+          <div class="mb-16 reveal">
+            <h3 class="text-2xl md:text-3xl font-space font-bold mb-6">{label}</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {byYear.get(label).map((m: any) => (
+                <div class="bg-black rounded-lg border border-gray-800 p-5 flex items-center gap-4 card-hover">
+                  {m.photoUrl ? (
+                    <img
+                      src={m.photoUrl}
+                      alt={`${m.name} headshot`}
+                      width="64" height="64" loading="lazy" decoding="async"
+                      class="w-24 h-24 rounded-full object-cover border border-gray-700"
+                    />
+                  ) : (
+                    <div class="w-24 h-24 rounded-full bg-carletonRed text-white font-bold text-base flex items-center justify-center">
+                      {(m.initials || m.name.split(' ').map((n: any) => n[0]).slice(0,2).join('')).toUpperCase()}
+                    </div>
+                  )}
+
+                  <div>
+                    <h4 class="font-semibold text-lg">{m.name}</h4>
+                    <p class="text-carletonRed text-sm">{m.title}</p>
+                    <p class="text-gray-400 text-xs">{m.programYear}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>

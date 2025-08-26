@@ -1,0 +1,204 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const SPACE = import.meta.env.PUBLIC_CTF_SPACE_ID;
+const TOKEN = import.meta.env.PUBLIC_CTF_CDA_TOKEN;
+
+// Fetch GalleryYear entries (include=2 to pull assets)
+const res = await fetch(
+  `https://cdn.contentful.com/spaces/${SPACE}/environments/master/entries?content_type=galleryYear&order=-fields.year&include=2&limit=100`,
+  { headers: { Authorization: `Bearer ${TOKEN}` } }
+);
+if (!res.ok) {
+  throw new Error(`Contentful fetch failed: ${res.status} ${res.statusText}`);
+}
+const data = await res.json();
+
+// Build asset map (id -> asset)
+const assets = new Map();
+(data.includes?.Asset ?? []).forEach((a: any) => assets.set(a.sys.id, a));
+
+// Flatten photos
+type Photo = {
+  url: string;
+  title: string;
+  description?: string;
+  year: string;
+  location?: string;
+};
+
+const entries = (data.items ?? []).filter((e: any) => e.fields?.photos?.length);
+
+const photos: Photo[] = [];
+entries.forEach((entry: any) => {
+  const year = String(entry.fields.year ?? "");
+  const location = entry.fields.location ?? "";
+  const photoRefs = entry.fields.photos ?? [];
+  photoRefs.forEach((ref: any) => {
+    const asset = assets.get(ref.sys.id);
+    const fileUrl = asset?.fields?.file?.url ? `https:${asset.fields.file.url}` : null;
+    const title = asset?.fields?.title ?? "Untitled";
+    const description = asset?.fields?.description ?? "";
+    if (fileUrl) {
+      photos.push({ url: fileUrl, title, description, year, location });
+    }
+  });
+});
+
+// Build years for filter UI (desc)
+const years = Array.from(new Set(photos.map(p => p.year)))
+  .filter(Boolean)
+  .sort((a, b) => Number(b) - Number(a));
+---
+
+<Layout>
+  <main>
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-40 bg-black">
+      <div class="container mx-auto px-6">
+        <div class="text-center mb-16 reveal">
+          <h2 class="text-4xl md:text-5xl font-space font-bold mb-4">Gallery</h2>
+          <div class="w-24 h-1 bg-carletonRed mx-auto"></div>
+        </div>
+
+        <!-- Filters -->
+        <div class="mb-8 flex justify-center reveal">
+          <div class="inline-flex bg-mediumGray rounded-lg p-1">
+            <!-- Default active: All Years -->
+            <button
+              class="gallery-filter px-4 py-2 rounded-md text-sm font-medium bg-carletonRed text-white"
+              data-year="all"
+            >
+              All Years
+            </button>
+            {years.map(y => (
+              <button
+                class="gallery-filter px-4 py-2 rounded-md text-sm font-medium text-white/90 hover:bg-gray-700"
+                data-year={y}
+              >
+                CUSEC {y}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <!-- Grid -->
+        <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {photos.map((p) => (
+            <button
+              class="gallery-item rounded-lg overflow-hidden reveal group relative text-left"
+              data-year={p.year}
+              data-url={p.url}
+              data-title={p.title}
+              data-caption={`CUSEC ${p.year}${p.location ? `, ${p.location}` : ""}${p.description ? ` — ${p.description}` : ""}`}
+            >
+              <img
+                src={p.url}
+                alt={p.title}
+                loading="lazy"
+                class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity p-4 flex flex-col justify-end">
+                <h4 class="font-medium text-white">{p.title}</h4>
+                <p class="text-sm text-gray-300">
+                  CUSEC {p.year}{p.location ? `, ${p.location}` : ""}{p.description ? ` — ${p.description}` : ""}
+                </p>
+              </div>
+            </button>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div
+      id="lightbox"
+      class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/70 p-4"
+      aria-hidden="true"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div class="relative max-w-5xl w-full">
+        <!-- Close button -->
+        <button id="lightbox-close"
+          class="absolute -top-3 -right-3 bg-black text-white rounded-full w-9 h-9 flex items-center justify-center border border-gray-700 hover:bg-carletonRed"
+          aria-label="Close"
+        >
+          ×
+        </button>
+
+        <!-- Image -->
+        <img id="lightbox-img" src="" alt="" class="w-full max-h-[80vh] object-contain rounded-lg border border-gray-800 bg-black" />
+
+        <!-- Caption -->
+        <div id="lightbox-caption" class="mt-3 text-gray-200 text-sm"></div>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script is:inline>
+      // Filter buttons active styling + filter logic
+      const buttons = document.querySelectorAll('.gallery-filter');
+      const items = document.querySelectorAll('.gallery-item');
+
+      function setActive(btn) {
+        buttons.forEach(b => {
+          b.classList.remove('bg-carletonRed', 'text-white');
+          b.classList.add('text-white/90');
+        });
+        btn.classList.add('bg-carletonRed', 'text-white');
+        btn.classList.remove('text-white/90');
+      }
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          setActive(btn);
+          const y = btn.dataset.year;
+          items.forEach(it => {
+            it.classList.toggle('hidden', y !== 'all' && it.dataset.year !== y);
+          });
+        });
+      });
+
+      // Lightbox logic
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-img');
+      const lbCaption = document.getElementById('lightbox-caption');
+      const lbClose = document.getElementById('lightbox-close');
+
+      function openLightbox(url, title, caption) {
+        lbImg.src = url;
+        lbImg.alt = title || 'Gallery image';
+        lbCaption.textContent = caption || '';
+        lightbox.classList.remove('hidden');
+        document.documentElement.classList.add('overflow-hidden'); // prevent background scroll
+        lbClose.focus();
+      }
+
+      function closeLightbox() {
+        lightbox.classList.add('hidden');
+        document.documentElement.classList.remove('overflow-hidden');
+        lbImg.src = '';
+        lbCaption.textContent = '';
+      }
+
+      // Open on item click
+      items.forEach(it => {
+        it.addEventListener('click', () => {
+          openLightbox(it.dataset.url, it.dataset.title, it.dataset.caption);
+        });
+      });
+
+      // Close interactions
+      lbClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox(); // click backdrop
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !lightbox.classList.contains('hidden')) {
+          closeLightbox();
+        }
+      });
+    </script>
+  </main>
+</Layout>
