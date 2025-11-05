@@ -1,0 +1,200 @@
+---
+---
+
+<div id="head-delegate-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4">
+  <!-- Backdrop -->
+  <div class="absolute inset-0 bg-black bg-opacity-80 backdrop-blur-sm" id="modal-backdrop"></div>
+  
+  <!-- Modal Content -->
+  <div class="relative bg-darkGray border-2 border-carletonRed rounded-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl">
+    <!-- Close Button -->
+    <button
+      id="close-modal"
+      class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors z-10 bg-black bg-opacity-50 rounded-full p-2 hover:bg-opacity-80"
+      aria-label="Close modal"
+    >
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-carletonRed/20 to-carletonRed/10 border-b border-carletonRed/30 p-6">
+      <h2 class="text-3xl md:text-4xl font-space font-bold text-center text-carletonRed">
+        🎟️ CUSEC 2026 Ticket Sales
+      </h2>
+      <p class="text-center text-gray-300 mt-2 text-sm">Get ready for Canada's premier student tech conference</p>
+    </div>
+
+    <!-- Content -->
+    <div class="p-6 space-y-6">
+      <!-- Section 1: Pre-Sale Information -->
+      <div class="bg-gradient-to-br from-black via-gray-900 to-black border-2 border-carletonRed/50 rounded-xl p-6 shadow-lg relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-carletonRed/5 rounded-full blur-3xl"></div>
+        <div class="relative z-10">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="bg-carletonRed/20 rounded-lg p-2">
+              <svg class="w-6 h-6 text-carletonRed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-space font-bold text-white">
+              Pre-Sale Tickets Available Now
+            </h3>
+          </div>
+
+          <!-- Pre-Sale Dates -->
+          <div class="bg-black/50 rounded-lg p-4 mb-4 border border-gray-800">
+            <div class="flex items-start gap-3 mb-3">
+              <svg class="w-5 h-5 text-carletonRed mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <div>
+                <p class="text-sm text-gray-400">Pre-Sale Opens</p>
+                <p class="text-lg font-semibold text-white">November 3, 2025 at 9 AM EST</p>
+                <p class="text-sm text-gray-400 mt-1">Closes November 10, 2025 at 9 AM EST</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-carletonRed mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <div>
+                <p class="text-sm text-gray-400">General Sale Opens</p>
+                <p class="text-lg font-semibold text-white">November 10, 2025 at 9 AM EST</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pricing Info -->
+          <div class="bg-black/50 rounded-lg p-4 mb-4 border border-gray-800">
+            <p class="text-sm font-semibold text-carletonRed mb-2">Ticket Pricing:</p>
+            <div class="space-y-1 text-sm">
+              <p class="text-gray-300">• Student: <span class="text-white font-semibold">Basic $95</span> | <span class="text-white font-semibold">VIP $140</span></p>
+              <p class="text-gray-300">• Professional: <span class="text-white font-semibold">Basic $250</span> | <span class="text-white font-semibold">VIP $300</span></p>
+              <p class="text-carletonRed text-xs mt-2">💡 Special: Buy 3, get the 4th 50% off!</p>
+            </div>
+          </div>
+
+          <!-- Contact Head Delegate -->
+          <div class="pt-4 border-t border-gray-800">
+            <p class="text-sm text-gray-400 mb-3">Contact your Head Delegate for pre-sale access:</p>
+            <div class="bg-black/30 rounded-lg p-4 space-y-3">
+              <div>
+                <p class="text-lg font-semibold text-carletonRed mb-1">Teja Hebbale</p>
+                <p class="text-gray-300 text-sm mb-1">Head Delegate</p>
+                <p class="text-gray-400 text-xs">1st Year MBA (conc. Management & Change)</p>
+              </div>
+              <div class="flex flex-col gap-2 pt-2">
+                <a href="mailto:carleton@cusec.net" class="flex items-center gap-2 text-carletonRed hover:text-white transition-colors">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  <span class="text-sm">carleton@cusec.net</span>
+                </a>
+                <a href="https://www.instagram.com/teja_hebbale_/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 text-carletonRed hover:text-white transition-colors">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16.5 8.25V6a2.25 2.25 0 00-2.25-2.25H6A2.25 2.25 0 003.75 6v2.25m13.5 0V18a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V8.25m13.5 0h-3m-9 0h3" />
+                  </svg>
+                  <span class="text-sm">@teja_hebbale_ <span class="text-gray-400">(preferred)</span></span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Section 2: Meet Your Head Delegate -->
+      <div class="bg-gradient-to-br from-black via-gray-900 to-black border-2 border-carletonRed/50 rounded-xl p-6 shadow-lg relative overflow-hidden">
+        <div class="absolute bottom-0 left-0 w-32 h-32 bg-carletonRed/5 rounded-full blur-3xl"></div>
+        <div class="relative z-10">
+          <div class="flex items-center gap-2 mb-4">
+            <div class="bg-carletonRed/20 rounded-lg p-2">
+              <svg class="w-6 h-6 text-carletonRed" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-space font-bold text-white">
+              Know More About CUSEC & Meet Your Head Delegate
+            </h3>
+          </div>
+          
+          <div class="bg-black/50 rounded-lg p-4 space-y-3 border border-gray-800">
+            <div class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-carletonRed flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              <div>
+                <p class="text-sm text-gray-400">Event Date</p>
+                <p class="text-lg font-semibold text-white">November 13th, Thursday</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <svg class="w-5 h-5 text-carletonRed flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <div>
+                <p class="text-sm text-gray-400">Location</p>
+                <p class="text-lg font-semibold text-gray-300">TBA</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Button -->
+      <div class="pt-4 text-center">
+        <a
+          href="/info"
+          class="btn-primary inline-block px-8 py-3 rounded-md font-semibold text-lg w-full sm:w-auto"
+        >
+          Learn More About CUSEC 2026
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // TESTING MODE: Show modal every time
+  // Clear any existing localStorage value for testing
+  localStorage.removeItem('headDelegateModalShown');
+  
+  const modal = document.getElementById('head-delegate-modal');
+  const closeBtn = document.getElementById('close-modal');
+  const backdrop = document.getElementById('modal-backdrop');
+
+  // Show modal immediately (for testing)
+  if (modal) {
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden'; // Prevent background scrolling
+  }
+
+  // Close modal function
+  function closeModal() {
+    if (modal) {
+      modal.classList.add('hidden');
+      document.body.style.overflow = ''; // Restore scrolling
+      // Note: Not saving to localStorage in testing mode
+    }
+  }
+
+  // Close on button click
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeModal);
+  }
+
+  // Close on backdrop click
+  if (backdrop) {
+    backdrop.addEventListener('click', closeModal);
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+      closeModal();
+    }
+  });
+</script>
+
